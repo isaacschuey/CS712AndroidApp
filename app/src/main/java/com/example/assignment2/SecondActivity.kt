@@ -17,11 +17,10 @@ import androidx.compose.ui.unit.dp
 import com.example.assignment2.ui.theme.Assignment2Theme
 
 class SecondActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
         setContent {
             Assignment2Theme() {
                 Surface {
@@ -45,14 +44,11 @@ class SecondActivity : ComponentActivity() {
                 }
             }
         }
-
     }
-
 }
 
 @Composable
 fun SoftwareChallenges(challenges: Array<String>) {
-
     Text (
         text =  "5 Mobile Software Engineering Challenges:\n" +
                 "\t1) ${challenges[0]}\n" +
@@ -61,5 +57,4 @@ fun SoftwareChallenges(challenges: Array<String>) {
                 "\t4) ${challenges[3]}\n" +
                 "\t5) ${challenges[4]}"
     )
-
 }
