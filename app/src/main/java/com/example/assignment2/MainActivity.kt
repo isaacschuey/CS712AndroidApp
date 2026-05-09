@@ -2,11 +2,13 @@ package com.example.assignment2
 
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -21,11 +23,18 @@ import com.example.assignment2.ui.theme.Assignment2Theme
 
 class MainActivity : ComponentActivity() {
     private val myBroadcastReceiver = MyBroadcastReceiver()
+    private val secondActivityPermission = "com.example.assignment2.MSE712"
+
+    private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            android.util.Log.d("Permission", "isGranted: $isGranted")
+    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        requestPermissionLauncher.launch(secondActivityPermission)
 
         val filter = IntentFilter("com.example.MY_ACTION")
         registerReceiver(myBroadcastReceiver, filter, RECEIVER_NOT_EXPORTED)
